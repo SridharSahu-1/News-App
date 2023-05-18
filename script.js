@@ -1,6 +1,6 @@
 const container = document.querySelector(".container");
 const optionsContainer = document.querySelector(".options-container");
-let apiKey = "860ff9b66feb4d59b11756041629aecf";
+const apiKey = "860ff9b66feb4d59b11756041629aecf";
 
 const country = "in";
 const options = [
@@ -57,7 +57,7 @@ const selectCategory = (e, category) => {
   getNews();
 };
 
-
+//Options Buttons
 const createOptions = () => {
   for (let i of options) {
     optionsContainer.innerHTML += `<button class="option ${
