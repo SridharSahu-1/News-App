@@ -1,7 +1,6 @@
-//API Used: http://newsapi.org/s/india-news-api
 const container = document.querySelector(".container");
 const optionsContainer = document.querySelector(".options-container");
-// "in" stands for India
+
 const country = "in";
 const options = [
   "general",
@@ -12,10 +11,8 @@ const options = [
   "technology",
 ];
 
-//100 requests per day
 let requestURL;
 
-//Create cards from data
 const generateUI = (articles) => {
   for (let item of articles) {
     let card = document.createElement("div");
@@ -36,7 +33,7 @@ const generateUI = (articles) => {
   }
 };
 
-//News API Call
+
 const getNews = async () => {
   container.innerHTML = "";
   let response = await fetch(requestURL);
@@ -48,7 +45,7 @@ const getNews = async () => {
   generateUI(data.articles);
 };
 
-//Category Selection
+
 const selectCategory = (e, category) => {
   let options = document.querySelectorAll(".option");
   options.forEach((element) => {
@@ -59,7 +56,7 @@ const selectCategory = (e, category) => {
   getNews();
 };
 
-//Options Buttons
+
 const createOptions = () => {
   for (let i of options) {
     optionsContainer.innerHTML += `<button class="option ${
