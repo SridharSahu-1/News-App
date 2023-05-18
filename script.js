@@ -1,6 +1,6 @@
 const container = document.querySelector(".container");
 const optionsContainer = document.querySelector(".options-container");
-const apiKey = "860ff9b66feb4d59b11756041629aecf";
+// const apiKey = "860ff9b66feb4d59b11756041629aecf";
 
 const country = "in";
 const options = [
@@ -19,7 +19,7 @@ const generateUI = (articles) => {
     let card = document.createElement("div");
     card.classList.add("news-card");
     card.innerHTML = `<div class="news-image-container">
-    <img src="${item.urlToImage || "./newspaper.jpg"}" alt="" />
+    <img src="${item.imageUrl || "./newspaper.jpg"}" alt="" />
     </div>
     <div class="news-content">
       <div class="news-title">
@@ -43,7 +43,7 @@ const getNews = async () => {
     return false;
   }
   let data = await response.json();
-  generateUI(data.articles);
+  generateUI(data.data);
 };
 
 
@@ -52,7 +52,9 @@ const selectCategory = (e, category) => {
   options.forEach((element) => {
     element.classList.remove("active");
   });
-  requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`;
+  // let url = new URL("https://inshorts.deta.dev/news");
+  // requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`;
+  requestURL = `https://inshorts.deta.dev/news?category=${category}`;
   e.target.classList.add("active");
   getNews();
 };
@@ -73,6 +75,6 @@ const init = () => {
 };
 
 window.onload = () => {
-  requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=general&apiKey=${apiKey}`;
+  requestURL = `https://inshorts.deta.dev/news?category=all`;
   init();
 };
