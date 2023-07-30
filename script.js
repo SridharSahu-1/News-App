@@ -54,7 +54,7 @@ const selectCategory = (e, category) => {
   });
   // let url = new URL("https://inshorts.deta.dev/news");
   // requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`;
-  requestURL = `https://inshorts.deta.dev/news?category=${category}`;
+  requestURL = `https://news-api-ijwa.onrender.com/news?category=${category}`;
   e.target.classList.add("active");
   getNews();
 };
@@ -75,6 +75,6 @@ const init = () => {
 };
 
 window.onload = () => {
-  requestURL = `https://inshorts.deta.dev/news?category=all`;
+  requestURL = `https://news-api-ijwa.onrender.com/news?category=all`;
   init();
 };
