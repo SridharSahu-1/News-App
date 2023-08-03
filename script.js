@@ -1,15 +1,20 @@
 const container = document.querySelector(".container");
 const optionsContainer = document.querySelector(".options-container");
-// const apiKey = "860ff9b66feb4d59b11756041629aecf";
-
 const country = "in";
 const options = [
-  "general",
-  "entertainment",
-  "health",
-  "science",
-  "sports",
-  "technology",
+    "all",
+    "national",
+    "business",
+    "sports",
+    "world",
+    "politics",
+    "technology",
+    "startup",
+    "entertainment",
+    "miscellaneous",
+    "hatke",
+    "science",
+    "automobile"
 ];
 
 let requestURL;
@@ -36,14 +41,19 @@ const generateUI = (articles) => {
 
 
 const getNews = async () => {
+  const loadingContainer = document.querySelector(".loading-container");
+  loadingContainer.style.display = "flex";
+
   container.innerHTML = "";
   let response = await fetch(requestURL);
   if (!response.ok) {
     alert("Data unavailable at the moment. Please try again later");
+    loadingContainer.style.display = "none"; 
     return false;
   }
   let data = await response.json();
   generateUI(data.data);
+  loadingContainer.style.display = "none";   
 };
 
 
@@ -52,14 +62,11 @@ const selectCategory = (e, category) => {
   options.forEach((element) => {
     element.classList.remove("active");
   });
-  // let url = new URL("https://inshorts.deta.dev/news");
-  // requestURL = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${apiKey}`;
-  requestURL = `https://news-api-ijwa.onrender.com/news?category=${category}`;
+  requestURL = `https://in-short-api-u2nd.vercel.app/api/${category}`;
   e.target.classList.add("active");
   getNews();
 };
 
-//Options Buttons
 const createOptions = () => {
   for (let i of options) {
     optionsContainer.innerHTML += `<button class="option ${
@@ -75,6 +82,10 @@ const init = () => {
 };
 
 window.onload = () => {
-  requestURL = `https://news-api-ijwa.onrender.com/news?category=all`;
+  requestURL = `https://in-short-api-u2nd.vercel.app/api/all`;
+  const loadingContainer = document.querySelector(".loading-container");
+  loadingContainer.style.display = "flex"; 
   init();
-};
+}
+
+
